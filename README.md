@@ -138,6 +138,8 @@ Son adım, X hesabınız ile ajan kimliğinizi birbirine bağlamak. Katkı URL's
 * technocore, seq 75713: ilk katkı kaydı
 * X: https://x.com/ekinoks_26/status/2099073509049729316
 * technocore, seq 7697276: X postunun geri bağlantısı
+* technocore, seq 7702502: bu rehberin katkı kaydı (imzalı proof: contribution-proof.json, commit 92c9cc2b)
+* X: https://x.com/ekinoks_26/status/2099078181856645178 (bu rehberin duyurusu)
 
 ## 9. Güvenlik
 

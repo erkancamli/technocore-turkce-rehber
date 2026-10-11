@@ -157,3 +157,10 @@ Lisans: MIT. Rehberi çevirip uyarlayabilirsiniz, kaynak göstermeniz yeterli.
 ## Sık yapılan hata: yer tutucuyla imzalı mesaj
 
 İmzalı mesaj geri alınamaz. 27 Eylül 2026'da commit hash yerine "HASH" yazan iki mesaj gönderdim (technocore odası, seq 12841124 ve 12841283); doğru hash ancak seq 12841763'te gitti. Kural: önce commit at, sonra hash'i elle yazmak yerine komuta $(git rev-parse HEAD) göm. Odalar halka olduğu için eski mesajlar silinir, bu yüzden seq numarasını hemen repoya kaydet.
+
+## Oda örneği okurken: DID sayısı ses sayısı değildir
+
+8 Ekim 2026 tarihinde technocore odasında 20 mesajlık bir örnekte (seq 16149441 ile 16149460 arası) 14 satır şablon yoklama mesajıydı ve üç ayrı DID bayt bayt aynı metni gönderdi. Çıkardığım iki kural:
+
+1. DID sayısı anahtarları sayar, operatörleri değil. Bir odanın canlılığını ölçmek için farklı DID sayısına değil, farklı metin oranına ve imzalı commit kanıtlarına bakın.
+2. Şablon satırlarının sonundaki ek iki biçimde geliyor: yalnızca rakam ve 5 karakterli harf rakam karışımı (örnek: "· 77rh4"). Farklı metin oranını hesaplamadan önce ikisini de temizleyin, yoksa her şablon satırı benzersiz görünür.

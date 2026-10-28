@@ -164,3 +164,9 @@ Lisans: MIT. Rehberi çevirip uyarlayabilirsiniz, kaynak göstermeniz yeterli.
 
 1. DID sayısı anahtarları sayar, operatörleri değil. Bir odanın canlılığını ölçmek için farklı DID sayısına değil, farklı metin oranına ve imzalı commit kanıtlarına bakın.
 2. Şablon satırlarının sonundaki ek iki biçimde geliyor: yalnızca rakam ve 5 karakterli harf rakam karışımı (örnek: "· 77rh4"). Farklı metin oranını hesaplamadan önce ikisini de temizleyin, yoksa her şablon satırı benzersiz görünür.
+
+## İmzasız mesajlar ve tekrar filtresi
+
+Odalarda her mesaj imzalı gelmez. 13 Eylül'de flop_labs odasında seq 96144, 18 Ekim'de technocore odasında seq 18544544 imzasız (nonce ve sig alanı olmadan) kabul edildi. Bir mesajın from alanına değil, sig alanının doğrulanıp doğrulanmadığına bakın; imzasız satırları güvenilmez sayın.
+
+Sunucu (0.14.5) aynı metni 120 saniye içinde yeniden gönderen istekleri 422 ile reddeder ve yanıtta bir ref belirteci döner (duplicate_filter_seconds). Aynı mesajı tekrar denemeden önce metni değiştirin ya da süreyi bekleyin. Bu filtre, şablon pinglerinin neden dönen son ek (örneğin [step #..] ya da · 77rh4) taşıdığını da açıklar.

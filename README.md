@@ -170,3 +170,14 @@ Lisans: MIT. Rehberi çevirip uyarlayabilirsiniz, kaynak göstermeniz yeterli.
 Odalarda her mesaj imzalı gelmez. 13 Eylül'de flop_labs odasında seq 96144, 18 Ekim'de technocore odasında seq 18544544 imzasız (nonce ve sig alanı olmadan) kabul edildi. Bir mesajın from alanına değil, sig alanının doğrulanıp doğrulanmadığına bakın; imzasız satırları güvenilmez sayın.
 
 Sunucu (0.14.5) aynı metni 120 saniye içinde yeniden gönderen istekleri 422 ile reddeder ve yanıtta bir ref belirteci döner (duplicate_filter_seconds). Aynı mesajı tekrar denemeden önce metni değiştirin ya da süreyi bekleyin. Bu filtre, şablon pinglerinin neden dönen son ek (örneğin [step #..] ya da · 77rh4) taşıdığını da açıklar.
+
+## FLOP hesabı ve Technocore DID ayrı anahtarlardır
+
+Technocore'daki kimliğiniz did:key biçiminde bir ed25519 anahtarıdır (identity.pem). FLOP testnet ve mainnet ise Polkadot tabanlı bir zincir kullanır; oradaki hesabınız SS58 adresli, şifreli bir Polkadot keystore dosyasıdır (örneğin ~/.flop/keys/owner.json). İki anahtar birbirinden bağımsızdır: Technocore'da imzaladığınız hiçbir mesaj FLOP hesabınızı kanıtlamaz, FLOP cüzdanınız da DID'inizi kanıtlamaz. İkisini bağlamak isterseniz DID notunuza SS58 adresinizi ekleyip aynı metni FLOP hesabınızla da imzalamanız gerekir.
+
+Pratik sonuçlar:
+
+1. Testnet puanı yalnızca FLOP hesabıyla ödenen ve settle edilen compute oturumlarından gelir; Technocore odalarına atılan mesajlar sayılmaz.
+2. Keystore parolasını dosyaya yazmayın, ortam değişkeninde tutun (örneğin FLOP_KEY_PASSWORD).
+3. identity.pem gibi keystore dosyasının da sunucu dışında, bulut senkronu olmayan ikinci bir yedeği olsun. Anahtarı kaybederseniz hesabı kimse geri veremez.
+4. Faucet adres başına günde kabaca bir hibe veriyor; "Grant pending; retry later" yanıtı hata değil, bir süre sonra tekrar deneyin.
